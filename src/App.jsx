@@ -17,20 +17,20 @@ function App() {
         <p>Here are some of my projects</p>
         <div className="project-grid">
           <div className="card">
-            <h3>Project 1</h3>
-            <p>Project 1 description</p>
+            <h3>Brain Tumor Segmentation using SAM</h3>
+            <p>Fine-tuned Meta’s SAM on MRI data with prompt engineering and dynamic training strategies to improve segmentation accuracy.</p>
           </div>
           <div className="card">
-            <h3>Project 2</h3>
-            <p>Project 2 description</p>
+            <h3>Knight Club</h3>
+            <p>Multiplayer game using Python sockets and Pygame with real-time communication and object-locking mechanisms.</p>
           </div>
           <div className="card">
-            <h3>Project 3</h3>
-            <p>Project 3 description</p>
+            <h3>CalcQuest</h3>
+            <p>Interactive math game built in React, styled with Tailwind CSS, and deployed using Docker for learning reinforcement.</p>
           </div>
           <div className="card">
-            <h3>Project 4</h3>
-            <p>Project 4 description</p>
+            <h3>GameState Reflex</h3>
+            <p>Project at SFU Robot Soccer Club improving real-time strategy decisions and robot responsiveness with UI overhaul.</p>
           </div>
         </div>
       </section>
@@ -38,23 +38,35 @@ function App() {
       <section className="Experience">
         <h2>Experience</h2>
         <p>Here are some of my experiences</p>
-        <div classNam="experience-list">
+        <div className="experience-list">
           <div className="card">
-              <h3>Project 1</h3>
-              <p>Project 1 description</p>
-            </div>
-            <div className="card">
-              <h3>Project 2</h3>
-              <p>Project 2 description</p>
-            </div>
-            <div className="card">
-              <h3>Project 3</h3>
-              <p>Project 3 description</p>
-            </div>
-            <div className="card">
-              <h3>Project 4</h3>
-              <p>Project 4 description</p>
-            </div>
+            <h3>Software Head Developer, SFU Robot Soccer Club</h3>
+            <p>Led real-time strategy system development and UI improvements for robot soccer matches.</p>
+          </div>
+          <div className="card">
+            <h3>Computer Science Peer Educator, SFU</h3>
+            <p>Mentored students on CS fundamentals and provided help desk-style support in programming and math concepts.</p>
+          </div>
+          <div className="card">
+            <h3>Co-Director of Partnership, GDSC SFU</h3>
+            <p>Secured speakers and sponsorships through outreach and coordinated event planning with co-directors.</p>
+          </div>
+          <div className="card">
+            <h3>HIVE Leader, SFU</h3>
+            <p>Led new student groups through campus tours and social events, and engaged them on forums to support their transition.</p>
+          </div>
+          <div className="card">
+            <h3>Note Taker, Center for Accessible Learning, SFU</h3>
+            <p>Provided enhanced class notes with step-by-step explanations for CMPT 210 to aid students with accommodations.</p>
+          </div>
+          <div className="card">
+            <h3>HIVE Logistics Volunteer, SFU</h3>
+            <p>Helped coordinate Welcome Day, guided attendees, and offered advice to new CS students on university life.</p>
+          </div>
+          <div className="card">
+            <h3>Sales Associate, Banana Republic</h3>
+            <p>Delivered excellent customer service, performed safety inspections, and ensured smooth daily operations in retail.</p>
+          </div>
         </div>
       </section>
 
@@ -63,30 +75,29 @@ function App() {
         <p>Here are some of my skills</p>
         <div className="skills-list">
           <div className="card">
-            <h3>Skill 1</h3>
-            <p>Skill 1 description</p>
+            <h3>Languages</h3>
+            <p>Proficient in various programming languages</p>
             <ul>
-              <li>Skill 1</li>
-              <li>Skill 2</li>
-              <li>Skill 3</li>
+              <li>Java, Python, C/C++, JavaScript</li>
+              <li>HTML, CSS</li>
             </ul>
           </div>
           <div className="card">
-            <h3>Skill 2</h3>
-            <p>Skill 2 description</p>
+            <h3>Frameworks & Tools</h3>
+            <p>Experienced with popular dev tools</p>
             <ul>
-              <li>Skill 1</li>
-              <li>Skill 2</li>
-              <li>Skill 3</li>
+              <li>React, Node.js, Flask</li>
+              <li>Tailwind CSS, WebStorage API</li>
+              <li>Git, Docker, VS Code</li>
             </ul>
           </div>
           <div className="card">
-            <h3>Skill 3</h3>
-            <p>Skill 3 description</p>
+            <h3>IT & Support</h3>
+            <p>Strong troubleshooting and technical communication</p>
             <ul>
-              <li>Skill 1</li>
-              <li>Skill 2</li>
-              <li>Skill 3</li>
+              <li>Network & user account support</li>
+              <li>Printer and AV setup</li>
+              <li>Problem solving & help desk skills</li>
             </ul>
           </div>
         </div>
@@ -95,14 +106,21 @@ function App() {
       <section className="Education">
         <h2>Education</h2>
         <div className="card">
-            <h3>Education</h3>
-            <p>Education Details</p>
-          </div>
+          <h3>Simon Fraser University</h3>
+          <p>Bachelor of Science in Computer Science (2023 – Present)</p>
+        </div>
+        <div className="card">
+          <h3>Burnaby North Secondary School</h3>
+          <p>High School Diploma (2018 – 2023)</p>
+        </div>
       </section>
 
       <section className="Contact">
         <h2>Contact</h2>
         <p>Here is my contact information</p>
+        <p>Email: cna52@sfu.ca</p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/camille-ng-767a85326/">linkedin.com/in/camille-ng</a></p>
+        <p>GitHub: <a href="https://github.com/cna52">github.com/cna52</a></p>
       </section>
     </div>
   )

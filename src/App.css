@@ -47,21 +47,23 @@
   margin-top: 1rem;
 }
 
-.AppContainer {
-  height: 100vh;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-}
-
-section {
-  height: 100vh;
-  scroll-snap-align: start;
+.App-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
   padding: 2rem;
+  gap: 4rem; /* Ensures consistent spacing between sections */
 }
+
+
+section {
+  width: 100%;
+  max-width: 1100px;
+  padding: 2rem;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
 
 
 
