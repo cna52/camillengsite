@@ -9,24 +9,33 @@ function SkillsSection() {
           <p>Proficient in various programming languages</p>
           <ul>
             <li>Java, Python, C/C++, JavaScript</li>
-            <li>HTML, CSS</li>
+            <li>HTML, CSS, SQL, SQLite</li>
           </ul>
         </div>
         <div className="card">
-          <h3>Frameworks & Tools</h3>
-          <p>Experienced with popular dev tools</p>
+          <h3>Frameworks & Libraries</h3>
+          <p>Experienced with popular development frameworks and tools</p>
           <ul>
-            <li>React, Node.js, Flask</li>
-            <li>Tailwind CSS, WebStorage API</li>
-            <li>Git, Docker, VS Code</li>
+            <li>React, Node.js, Flask, Tailwind CSS</li>
+            <li>PyTorch, NumPy, Matplotlib</li>
+            <li>WebStorage API</li>
           </ul>
         </div>
         <div className="card">
-          <h3>IT & Support</h3>
-          <p>Strong troubleshooting and technical communication</p>
+          <h3>Developer Tools</h3>
+          <p>Version control and development environment tools</p>
           <ul>
-            <li>Network & user account support</li>
-            <li>Printer and AV setup</li>
+            <li>Git, Docker, GitLab, GitHub</li>
+            <li>VS Code</li>
+          </ul>
+        </div>
+        <div className="card">
+          <h3>Leadership & Communication</h3>
+          <p>Strong project management and technical communication skills</p>
+          <ul>
+            <li>Team leadership and Agile methodologies</li>
+            <li>Technical tutoring and mentoring</li>
+            <li>Partnership development and outreach</li>
             <li>Problem solving & help desk skills</li>
           </ul>
         </div>

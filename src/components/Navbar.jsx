@@ -1,7 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    // Optional: Persist user choice in localStorage
+    return localStorage.getItem('theme') === 'dark' ||
+           (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  });
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add('dark-mode');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.body.classList.remove('dark-mode');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDarkMode]);
 
   return (
     <nav className={`navbar ${isOpen ? 'open' : ''}`}>
@@ -25,9 +40,16 @@ function Navbar() {
           <li><a href="#contact" onClick={() => setIsOpen(false)}>Contact Me</a></li>
         </ul>
       )}
+
+      <button
+        onClick={() => setIsDarkMode(!isDarkMode)}
+        aria-label="Toggle dark mode"
+        className="theme-toggle"
+      >
+        {isDarkMode ? '🌞' : '🌙'}
+      </button>
     </nav>
   );
 }
 
 export default Navbar;
-
