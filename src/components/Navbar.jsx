@@ -1,53 +1,46 @@
 import { useState, useEffect } from 'react';
 
+const links = [
+  { href: '#about', label: '[01] ABOUT ME' },
+  { href: '#experience', label: '[02] EXPERIENCE' },
+  { href: '#projects', label: '[03] PROJECTS' },
+  { href: '#contact', label: '[04] CONTACT ME' },
+];
+
 function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    // Optional: Persist user choice in localStorage
-    return localStorage.getItem('theme') === 'dark' ||
-           (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
-  });
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    if (isDarkMode) {
-      document.body.classList.add('dark-mode');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.body.classList.remove('dark-mode');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [isDarkMode]);
+    document.body.classList.add('dark-mode');
+    return () => document.body.classList.remove('dark-mode');
+  }, []);
+
+  const close = () => setMenuOpen(false);
 
   return (
-    <nav className={`navbar ${isOpen ? 'open' : ''}`}>
-      <button
-        className={`menu-toggle ${isOpen ? 'open' : ''}`}
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label="Toggle menu"
-      >
-        <span className="bar top"></span>
-        <span className="bar middle"></span>
-        <span className="bar bottom"></span>
-      </button>
+    <nav className="navbar navbar--visible">
+      <a href="#home" className="navbar-brand">camille.</a>
 
-      {isOpen && (
-        <ul>
-          <li><a href="#home" onClick={() => setIsOpen(false)}>Home</a></li>
-          <li><a href="#projects" onClick={() => setIsOpen(false)}>Projects</a></li>
-          <li><a href="#experience" onClick={() => setIsOpen(false)}>Experience</a></li>
-          <li><a href="#skills" onClick={() => setIsOpen(false)}>Skills</a></li>
-          <li><a href="#education" onClick={() => setIsOpen(false)}>Education</a></li>
-          <li><a href="#contact" onClick={() => setIsOpen(false)}>Contact Me</a></li>
-        </ul>
-      )}
+      <ul className={`navbar-links ${menuOpen ? 'open' : ''}`}>
+        {links.map(({ href, label }) => (
+          <li key={href}>
+            <a href={href} onClick={close}>{label}</a>
+          </li>
+        ))}
+      </ul>
 
-      <button
-        onClick={() => setIsDarkMode(!isDarkMode)}
-        aria-label="Toggle dark mode"
-        className="theme-toggle"
-      >
-        {isDarkMode ? '🌞' : '🌙'}
-      </button>
+      <div className="navbar-right">
+        <span className="navbar-status">SFU CS / SHE HER</span>
+        <button
+          className="menu-toggle"
+          onClick={() => setMenuOpen(o => !o)}
+          aria-label="Toggle menu"
+        >
+          <span className="bar" />
+          <span className="bar" />
+          <span className="bar" />
+        </button>
+      </div>
     </nav>
   );
 }

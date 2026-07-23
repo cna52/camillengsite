@@ -1,35 +1,67 @@
+const experiences = [
+  {
+    title: 'Software Head Developer',
+    org: 'SFU Robot Soccer Club',
+    period: 'SEP 2024 - PRESENT',
+    tag: 'LEADERSHIP',
+    summary:
+      'Leading a team of 30+ to build autonomous systems and game state software for competitive robot soccer.',
+  },
+  {
+    title: 'Developer & Events Lead',
+    org: 'Google Developer Student Clubs SFU',
+    period: 'MAY 2024 - PRESENT',
+    tag: 'COMMUNITY',
+    summary:
+      'Organized workshops and built internal tools to support a community of 300+ students.',
+  },
+  {
+    title: 'Peer Programming Educator',
+    org: 'SFU CS Department',
+    period: 'JAN 2023 - PRESENT',
+    tag: 'MENTORSHIP',
+    summary:
+      'Support students in data structures, algorithms, and software design through 1:1 and group sessions.',
+  },
+];
+
 function ExperienceSection() {
   return (
-    <section className="Experience" id="experience">
-      <h2>Experience</h2>
-      <p>Here are some of my experiences</p>
-      <div className="experience-list">
-        <div className="card">
-          <h3>Software Head Developer, Simon Fraser University Robot Soccer Club (SFURS)</h3>
-          <p><em>Sept. 2024 – Present | Burnaby, BC</em></p>
-          <ul>
-            <li>Led development of the GameState Reflex system, improving robot decision-making speed and strategic response time by 30% during live match simulations.</li>
-            <li>Redesigned match control UI and integrated real-time diagnostics, cutting setup time by 40% and accelerating live debugging workflows.</li>
-            <li>Collaborated with a 30+ person dev team through weekly Agile-style meetings, aligning on sprints and resolving blockers, which accelerated feature delivery by 20%.</li>
-          </ul>
+    <section id="experience" className="section-shell">
+      <div className="section-frame section-frame--experience">
+        <div className="section-frame__header">
+          <div className="section-title-wrap">
+            <span className="section-number">02.</span>
+            <h2>Experience</h2>
+          </div>
+          <span className="section-path">/experience.log</span>
         </div>
-        <div className="card">
-          <h3>Computer Science Peer Educator, Simon Fraser University</h3>
-          <p><em>Sept. 2024 – Present | Burnaby, BC</em></p>
-          <ul>
-            <li>Tutored 20+ first-year computer science students in core topics such as sorting algorithms, recursion, and data structures, leading to improved assignment performance and higher student confidence.</li>
-            <li>Delivered one-on-one help desk support for common debugging and logic issues, resolving 90% of queries within the same session.</li>
-            <li>Designed diagrams to explain topics like recursion and complexity analysis, used by 3+ CS classes as supplementary material.</li>
-          </ul>
-        </div>
-        <div className="card">
-          <h3>Co-Director of Partnership, Google Developer Student Club (GDSC) Simon Fraser University</h3>
-          <p><em>Jan. 2025 – Present | Burnaby, BC</em></p>
-          <ul>
-            <li>Secured 5+ sponsorships and speakers through targeted LinkedIn/email outreach, raising event attendance by 200% compared to previous term.</li>
-            <li>Co-managed outreach strategy with another director, streamlining speaker onboarding and reducing scheduling conflicts by 70%.</li>
-            <li>Established long-term partnerships with local startups and tech professionals, resulting in 3 recurring guest speaker collaborations.</li>
-          </ul>
+
+        <div className="experience-grid">
+          <div className="experience-timeline">
+            {experiences.map(({ title, org, period, tag, summary }) => (
+              <article key={title} className="experience-row">
+                <div className="experience-dot" />
+                <div className="experience-main">
+                  <h3>{title}</h3>
+                  <p className="experience-org">{org}</p>
+                  <p className="experience-summary">{summary}</p>
+                </div>
+                <div className="experience-side">
+                  <span className="experience-period">{period}</span>
+                  <span className="experience-tag">{tag}</span>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <aside className="impact-card">
+            <div className="impact-card__image" />
+            <div className="impact-card__code">
+              <span>// impact.log</span>
+              <pre>{`const impact = {\n  teams_led: 30+,\n  events_hosted: 25+,\n  students_helped: 200+\n};\n\nreturn impact;`}</pre>
+            </div>
+          </aside>
         </div>
       </div>
     </section>

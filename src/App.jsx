@@ -1,9 +1,8 @@
 import './App.css';
 import HomeSection from './components/HomeSection';
-import ProjectsSection from './components/ProjectsSection';
 import ExperienceSection from './components/ExperienceSection';
-import SkillsSection from './components/SkillsSection';
-import EducationSection from './components/EducationSection';
+import AboutSection from './components/AboutSection';
+import ProjectsSection from './components/ProjectsSection';
 import ContactSection from './components/ContactSection';
 import Navbar from './components/Navbar';
 
@@ -13,10 +12,9 @@ function App() {
       <Navbar />
       <div className="App-container">
         <HomeSection />
-        <ProjectsSection />
+        <AboutSection />
         <ExperienceSection />
-        <SkillsSection />
-        <EducationSection />
+        <ProjectsSection />
         <ContactSection />
       </div>
     </>
