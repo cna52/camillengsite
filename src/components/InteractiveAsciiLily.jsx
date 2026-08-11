@@ -296,7 +296,7 @@ function InteractiveAsciiLily({ className = '' }) {
       STARS.forEach((star, index) => {
         const pulse = 0.55 + 0.45 * Math.sin(t * 1.5 + index * 0.8);
         context.fillStyle = `rgba(241, 202, 214, ${0.3 + pulse * 0.35})`;
-        context.font = `${10 + star.size * 4}px "IBM Plex Mono", monospace`;
+        context.font = `${10 + star.size * 4}px "JetBrains Mono", monospace`;
         context.fillText(index % 2 === 0 ? '+' : '·', star.x * width, star.y * height);
       });
 
@@ -327,7 +327,7 @@ function InteractiveAsciiLily({ className = '' }) {
         const fontSize = 8.5 * point.size + glow * 1.6;
         const char = CHARSET[index % CHARSET.length];
 
-        context.font = `${fontSize}px "IBM Plex Mono", monospace`;
+        context.font = `${fontSize}px "JetBrains Mono", monospace`;
         context.fillStyle = `rgba(244, 168, 194, ${alpha})`;
         context.fillText(char, px + offsetX, py + offsetY);
 

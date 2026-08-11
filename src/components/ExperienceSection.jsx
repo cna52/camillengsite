@@ -1,68 +1,84 @@
+import TerminalTypewriter from './TerminalTypewriter';
+import TerminalPrintGroup from './TerminalPrintGroup';
+
+const experienceCommand = ['cat experience.log'];
+
 const experiences = [
   {
-    title: 'Software Head Developer',
-    org: 'SFU Robot Soccer Club',
-    period: 'SEP 2024 - PRESENT',
-    tag: 'LEADERSHIP',
-    summary:
-      'Leading a team of 30+ to build autonomous systems and game state software for competitive robot soccer.',
+    title: 'machine learning engineer intern',
+    org: 'royal bank of canada (rbc)',
+    period: 'may 2026 — dec 2026',
+    current: true,
+    group: 'technical',
+    technologies: ['python', 'opensearch', 'snowflake cortex', 'aws bedrock'],
   },
   {
-    title: 'Developer & Events Lead',
-    org: 'Google Developer Student Clubs SFU',
-    period: 'MAY 2024 - PRESENT',
-    tag: 'COMMUNITY',
-    summary:
-      'Organized workshops and built internal tools to support a community of 300+ students.',
+    title: 'quality analyst & rpa developer intern',
+    org: 'ledcor group of companies',
+    period: 'sep 2025 — apr 2026',
+    group: 'technical',
+    technologies: ['power automate', 'sql', 'testrail', 'jira'],
   },
   {
-    title: 'Peer Programming Educator',
-    org: 'SFU CS Department',
-    period: 'JAN 2023 - PRESENT',
-    tag: 'MENTORSHIP',
-    summary:
-      'Support students in data structures, algorithms, and software design through 1:1 and group sessions.',
+    title: 'software team lead',
+    org: 'sfu robot soccer club',
+    period: 'sep 2024 — present',
+    group: 'technical',
+    technologies: ['c++', 'python', 'qt6 / qml', 'protobuf'],
+  },
+  {
+    title: 'director of partnerships',
+    org: 'google developer student club sfu',
+    period: 'jan 2025 — apr 2026',
+    group: 'leadership',
+    technologies: ['partnerships', 'events', 'mentorship'],
   },
 ];
 
 function ExperienceSection() {
   return (
-    <section id="experience" className="section-shell">
-      <div className="section-frame section-frame--experience">
-        <div className="section-frame__header">
-          <div className="section-title-wrap">
-            <span className="section-number">02.</span>
-            <h2>Experience</h2>
-          </div>
-          <span className="section-path">/experience.log</span>
-        </div>
+    <section id="experience" className="section" aria-labelledby="experience-title">
+      <div className="site-container">
+        <header className="section-heading">
+          <p className="section-index">02</p>
+          <h2 id="experience-title">experience</h2>
+        </header>
 
-        <div className="experience-grid">
-          <div className="experience-timeline">
-            {experiences.map(({ title, org, period, tag, summary }) => (
-              <article key={title} className="experience-row">
-                <div className="experience-dot" />
-                <div className="experience-main">
-                  <h3>{title}</h3>
-                  <p className="experience-org">{org}</p>
-                  <p className="experience-summary">{summary}</p>
-                </div>
-                <div className="experience-side">
-                  <span className="experience-period">{period}</span>
-                  <span className="experience-tag">{tag}</span>
+        <p className="section-command">
+          <span aria-hidden="true">$ </span>
+          <TerminalTypewriter
+            phrases={experienceCommand}
+            ariaLabel="Command: cat experience.log"
+            holdDelay={8000}
+          />
+        </p>
+        <TerminalPrintGroup
+          className="timeline"
+          initialDelay={1080}
+          aria-label="Experience timeline"
+        >
+          <div className="timeline__entries">
+            {experiences.map(({ title, org, period, current, technologies }, index) => (
+              <article
+                key={title}
+                className="timeline__item terminal-print-item"
+                style={{ '--print-order': `${index * 165}ms` }}
+              >
+                <p className="timeline__date">{period}</p>
+                <div className="timeline__content">
+                  <div className="timeline__title-row">
+                    <h3>{title}</h3>
+                    {current && <span className="timeline__status">● current</span>}
+                  </div>
+                  <p className="timeline__org">{org}</p>
+                  <div className="tag-list" aria-label="Related skills">
+                    {technologies.map((technology) => <span key={technology}>{technology}</span>)}
+                  </div>
                 </div>
               </article>
             ))}
           </div>
-
-          <aside className="impact-card">
-            <div className="impact-card__image" />
-            <div className="impact-card__code">
-              <span>// impact.log</span>
-              <pre>{`const impact = {\n  teams_led: 30+,\n  events_hosted: 25+,\n  students_helped: 200+\n};\n\nreturn impact;`}</pre>
-            </div>
-          </aside>
-        </div>
+        </TerminalPrintGroup>
       </div>
     </section>
   );

@@ -1,72 +1,70 @@
-const skills = [
-  {
-    label: 'languages',
-    value: 'Python, Java, C++, TypeScript',
-  },
-  {
-    label: 'frameworks',
-    value: 'React, Node.js, PyTorch',
-  },
-  {
-    label: 'tools',
-    value: 'Git, Docker, Figma, VS Code',
-  },
-  {
-    label: 'interests',
-    value: 'AI/ML, full-stack, UX, robotics',
-  },
+import TerminalTypewriter from './TerminalTypewriter';
+import TerminalPrintGroup from './TerminalPrintGroup';
+
+const aboutCommand = ['cat about.md'];
+
+const facts = [
+  ['school', 'simon fraser university'],
+  ['degree', 'b.sc. computer science · expected apr 2027'],
+  ['focus', 'machine learning, data, full-stack'],
 ];
 
 function AboutSection() {
   return (
-    <section id="about" className="section-shell">
-      <div className="section-frame section-frame--about">
-        <div className="section-frame__header">
-          <div className="section-title-wrap">
-            <span className="section-number">01.</span>
-            <h2>About Me</h2>
-          </div>
-          <span className="section-path">/about_me</span>
-        </div>
+    <section id="about" className="section" aria-labelledby="about-title">
+      <div className="site-container">
+        <header className="section-heading">
+          <p className="section-index">01</p>
+          <h2 id="about-title">about</h2>
+        </header>
 
-        <div className="about-grid">
-          <div className="about-photo-card">
-            <div className="about-photo-card__frame" />
-            <div className="about-photo-card__image" />
-          </div>
-
-          <div className="about-copy-card">
-            <p>
-              I&apos;m a Computer Science student at Simon Fraser University who
-              loves the intersection of systems, design, and human impact.
+        <TerminalPrintGroup className="about" initialDelay={760}>
+          <div className="about__copy">
+            <p className="section-command about__command">
+              <span aria-hidden="true">$ </span>
+              <TerminalTypewriter
+                phrases={aboutCommand}
+                ariaLabel="Command: cat about.md"
+                holdDelay={8000}
+              />
             </p>
-            <p>
-              I build things that are reliable under the hood and intentional on
-              the surface.
+            <p
+              className="about__intro terminal-print-item terminal-print-item--clip"
+              style={{ '--print-order': '0ms' }}
+            >
+              I&apos;m a computer science student at Simon Fraser University who likes building
+              cool, useful things—especially around machine learning, data, and automation.
+              Outside of CS, I love trying good food and doing nail art.
             </p>
-            <div className="about-traits">
-              <span>storyteller</span>
-              <span>builder</span>
-              <span>problem solver</span>
-              <span>team player</span>
-            </div>
-          </div>
 
-          <div className="about-skills-card">
-            <div className="about-skills-card__header">
-              <span>SKILLS.SYS</span>
-              <span>+</span>
-            </div>
-            <div className="about-skills-list">
-              {skills.map(({ label, value }) => (
-                <div key={label} className="about-skill-row">
-                  <span className="about-skill-label">{label}</span>
-                  <span className="about-skill-value">{value}</span>
+            <dl className="fact-list">
+              {facts.map(([label, value], index) => (
+                <div
+                  key={label}
+                  className="terminal-print-item"
+                  style={{ '--print-order': `${720 + (index * 110)}ms` }}
+                >
+                  <dt>{label}</dt>
+                  <dd>{value}</dd>
                 </div>
               ))}
-            </div>
+            </dl>
           </div>
-        </div>
+
+          <figure
+            className="about__portrait terminal-print-item terminal-print-item--media"
+            style={{ '--print-order': '0ms' }}
+          >
+            <div className="about__portrait-frame">
+              <img
+                src="/camillepic.jpg"
+                alt="Camille Ng standing by the waterfront"
+                loading="lazy"
+              />
+            </div>
+            <figcaption>camillepic.jpg // portrait</figcaption>
+          </figure>
+        </TerminalPrintGroup>
       </div>
     </section>
   );
