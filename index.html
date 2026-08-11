@@ -2,12 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#09080d" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
-    <title>Vite + React</title>
+    <meta name="description" content="Camille Ng — SFU computer science student building software across machine learning, automation, and full-stack development." />
+    <title>camille ng</title>
+    <script>
+      (() => {
+        const themeToggleEnabled = false;
+        const storageKey = 'camille-theme';
+        let savedTheme = null;
+
+        try {
+          savedTheme = localStorage.getItem(storageKey);
+        } catch {
+          savedTheme = null;
+        }
+
+        const preferredTheme = savedTheme === 'light' || savedTheme === 'dark'
+          ? savedTheme
+          : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        const theme = themeToggleEnabled ? preferredTheme : 'dark';
+
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+        document.querySelector('meta[name="theme-color"]').content = theme === 'dark'
+          ? '#08070b'
+          : '#f4f5f6';
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -1,66 +1,213 @@
-function ProjectsSection() {
+import { useState } from 'react';
+import TerminalTypewriter from './TerminalTypewriter';
+import TerminalPrintGroup from './TerminalPrintGroup';
+
+const projectsCommand = ['grep -r "winner" ~/work'];
+
+const projects = [
+  {
+    title: 'greenleaf dashboard',
+    category: 'case competition winner',
+    summary:
+      'Analyzed farm, sensor, and financial data to surface insights on sustainability, profitability, and resource efficiency for precision agriculture decision-making.',
+    tags: ['data analytics', 'data storytelling', 'business strategy', 'sustainability'],
+    event: 'sfu beedie business analytics hackathon 2026',
+    award: '1st place',
+    contribution: null,
+    linkedinUrl: 'https://www.linkedin.com/posts/sfubeedie_this-past-weekend-more-than-60-simon-fraser-activity-7467691110954553344-rhbS/',
+    devpostUrl: null,
+  },
+  {
+    title: 'hoppyhour',
+    category: 'hackathon winner',
+    summary:
+      'A social app where friends answer hourly photo prompts, follow each other’s day on a shared timeline, and receive an automatically generated video recap.',
+    tags: ['react native', 'next.js', 'mongodb', 'mongoose', 'rest api'],
+    event: 'cmd-f 2026',
+    award: '[mlh] best hack built with google antigravity',
+    contribution: null,
+    devpostUrl: 'https://devpost.com/software/hoppyhour',
+  },
+  {
+    title: 'askless',
+    category: 'hackathon winner',
+    summary:
+      'An AI-powered question forum that delivers instant, helpful answers with the opinionated personality of classic Stack Overflow.',
+    tags: ['react', 'typescript', 'express.js', 'gemini', 'supabase'],
+    event: 'systemshacks 2026: xhacks',
+    award: 'interndb',
+    contribution: null,
+    devpostUrl: 'https://devpost.com/software/askless',
+  },
+  {
+    title: 'cramsino',
+    category: 'hackathon winner',
+    summary:
+      'A computer vision–driven study app that turns focused study time into currency for gacha-style card pulls.',
+    tags: ['next.js', 'fastapi', 'mediapipe', 'opencv', 'postgresql'],
+    event: 'journeyhacks 2026',
+    award: 'best ui by huion',
+    contribution: null,
+    devpostUrl: 'https://devpost.com/software/cramsino',
+  },
+  {
+    title: 'connectsfu',
+    category: 'hackathon winner',
+    summary:
+      'A centralized hub for discovering SFU club events, with AI-powered search and a buddy-matching system for students who want someone to attend with.',
+    tags: ['react', 'typescript', 'gemini', 'supabase', 'tailwind'],
+    event: 'stormhacks 2025',
+    award: 'software systems prize',
+    contribution: null,
+    devpostUrl: 'https://devpost.com/software/connectsfu',
+  },
+];
+
+const actionLabels = {
+  linkedin: 'view announcement',
+  devpost: 'view on devpost',
+};
+
+function ProjectActions({ title, linkedinUrl, devpostUrl }) {
+  const actions = [
+    ['linkedin', linkedinUrl],
+    ['devpost', devpostUrl],
+  ].filter(([, href]) => href);
+
+  if (!actions.length) return null;
+
   return (
-    <section className="Projects" id="projects">
-      <h2>Projects</h2>
-      <p>Here are some of my projects</p>
-      <div className="project-grid">
-        <div className="card">
-          <h3>Brain Tumor Segmentation using SAM</h3>
-          <div className="tech-tags">
-            <span className="tech-tag">Python</span>
-            <span className="tech-tag">PyTorch</span>
-            <span className="tech-tag">NumPy</span>
-            <span className="tech-tag">Matplotlib</span>
-          </div>
-          <p><em>Jan. 2025 – Apr. 2025</em></p>
-          <ul>
-            <li>Optimized Meta's SAM (ViT-B) for tumor segmentation on 2D FLAIR MRI slices by integrating custom loss functions and varied prompt strategies, including bounding boxes, reference points, and hybrid methods.</li>
-            <li>Constructed an end-to-end pipeline from preprocessing to inference, supporting multi-slice input, 3D-aware postprocessing, and volume reconstruction via NIfTI metadata.</li>
-            <li>Reduced segmentation false positives by 22% by integrating negative prompts, elastic deformation, and intensity scaling techniques.</li>
-          </ul>
-        </div>
-        <div className="card">
-          <h3>Knight Club: Multiplayer LAN Game</h3>
-          <div className="tech-tags">
-            <span className="tech-tag">Python</span>
-            <span className="tech-tag">Pygame</span>
-            <span className="tech-tag">TCP & UDP</span>
-            <span className="tech-tag">Sockets</span>
-          </div>
-          <p><em>Jan. 2025 – Apr. 2025</em></p>
-          <ul>
-            <li>Engineered a socket-based multiplayer game engine supporting up to 4 players over local Wi-Fi, maintaining latency under 150ms.</li>
-            <li>Designed and implemented server-side logic with multithreading and per-object locks, enabling 100% race-condition-free gameplay across 20+ playtests.</li>
-            <li>Programmed client-side systems in Pygame, including event handling, collision detection, UI updates, and real-time network state rendering.</li>
-          </ul>
-        </div>
-        <div className="card">
-          <h3>CalcQuest</h3>
-          <div className="tech-tags">
-            <span className="tech-tag">React</span>
-            <span className="tech-tag">JSX</span>
-            <span className="tech-tag">Tailwind CSS</span>
-            <span className="tech-tag">GitHub</span>
-            <span className="tech-tag">Docker</span>
-            <span className="tech-tag">JavaScript</span>
-          </div>
-          <p><em>Oct. 2024 – Dec. 2024</em></p>
-          <ul>
-            <li>Created an interactive math RPG using React and JavaScript that provides real-time feedback to help students practice and reinforce core arithmetic and algebra skills.</li>
-            <li>Styled the application using Tailwind CSS to ensure visual consistency and reduce UI development time by 25%.</li>
-            <li>Containerized and deployed the project via Docker and GitHub, streamlining team collaboration and reducing environment setup time by 50%.</li>
-          </ul>
-        </div>
-        <div className="card">
-          <h3>GameState Reflex</h3>
-          <div className="tech-tags">
-            <span className="tech-tag">Real-time</span>
-            <span className="tech-tag">Strategy</span>
-            <span className="tech-tag">Robot Soccer</span>
-          </div>
-          <p><em>SFU Robot Soccer Club Project</em></p>
-          <p>Real-time strategy system for robot soccer that improves decision-making speed and strategic response time by 30% during live match simulations.</p>
-        </div>
+    <div className="project-entry__actions">
+      {actions.map(([label, href]) => (
+        <a
+          key={label}
+          href={href}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`${actionLabels[label]}: ${title}`}
+        >
+          <span>{actionLabels[label]}</span>
+          <span className="link-arrow link-arrow--out" aria-hidden="true">↗</span>
+        </a>
+      ))}
+    </div>
+  );
+}
+
+function ProjectsSection() {
+  const [openProject, setOpenProject] = useState(null);
+  const [animatedProjects, setAnimatedProjects] = useState(() => new Set());
+
+  const toggleProject = (index) => {
+    if (openProject !== null) {
+      setAnimatedProjects((current) => new Set(current).add(openProject));
+    }
+
+    setOpenProject(openProject === index ? null : index);
+  };
+
+  return (
+    <section id="projects" className="section" aria-labelledby="projects-title">
+      <div className="site-container">
+        <header className="section-heading">
+          <p className="section-index">03</p>
+          <h2 id="projects-title">events &amp; projects</h2>
+        </header>
+
+        <p className="section-command">
+          <span aria-hidden="true">$ </span>
+          <TerminalTypewriter
+            phrases={projectsCommand}
+            ariaLabel="Command: search work for winners"
+            holdDelay={8000}
+          />
+        </p>
+        <TerminalPrintGroup className="projects-directory" initialDelay={800}>
+          <ol className="projects-directory__list">
+            {projects.map((project, index) => {
+              const entryNumber = String(index + 1).padStart(2, '0');
+              const isOpen = openProject === index;
+              const hasAnimated = animatedProjects.has(index);
+              const summaryId = `project-summary-${index}`;
+              const panelId = `project-panel-${index}`;
+
+              return (
+                <li
+                  key={project.title}
+                  className="terminal-print-item"
+                  style={{ '--print-order': `${index * 110}ms` }}
+                >
+                  <article
+                    className={`project-entry ${isOpen ? 'is-open' : ''} ${hasAnimated ? 'has-animated' : ''}`.trim()}
+                  >
+                    <button
+                      id={summaryId}
+                      className="project-entry__summary"
+                      type="button"
+                      aria-expanded={isOpen}
+                      aria-controls={panelId}
+                      onClick={() => toggleProject(index)}
+                    >
+                      <span className="project-entry__index">{entryNumber}</span>
+                      <span className="project-entry__title" role="heading" aria-level="3">
+                        {project.title}
+                      </span>
+                      <span className="project-entry__category">{project.category}</span>
+                      <span className="project-entry__toggle" aria-hidden="true" />
+                    </button>
+                    <div
+                      id={panelId}
+                      className="project-entry__panel"
+                      role="region"
+                      aria-labelledby={summaryId}
+                      aria-hidden={!isOpen}
+                      inert={isOpen ? undefined : ''}
+                    >
+                      <div className="project-entry__panel-inner">
+                        <div className="project-entry__output">
+                          {(project.award || project.event) && (
+                            <p className="project-entry__status">
+                              {[project.award, project.event].filter(Boolean).join(' · ')}
+                            </p>
+                          )}
+                          <p className="project-entry__description">
+                            <span aria-hidden="true">&gt; </span>
+                            {hasAnimated ? (
+                              project.summary
+                            ) : (
+                              <TerminalTypewriter
+                                phrases={[project.summary]}
+                                ariaLabel={project.summary}
+                                typeDelay={16}
+                                completionDelay={700}
+                                loop={false}
+                                className="project-entry__typewriter"
+                              />
+                            )}
+                          </p>
+                          {project.contribution && (
+                            <p className="project-entry__contribution">{project.contribution}</p>
+                          )}
+                          <div className="tag-list" aria-label={`${project.title} technologies`}>
+                            {project.tags.map((tag, tagIndex) => (
+                              <span
+                                key={tag}
+                                style={{ '--tag-order': `${tagIndex * 60}ms` }}
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                          <ProjectActions {...project} />
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </li>
+              );
+            })}
+          </ol>
+        </TerminalPrintGroup>
       </div>
     </section>
   );
