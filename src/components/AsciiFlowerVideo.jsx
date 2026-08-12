@@ -8,16 +8,21 @@ function AsciiFlowerVideo({ className = '' }) {
   const [isVisible, setIsVisible] = useState(true);
   const [reduceMotion, setReduceMotion] = useState(false);
   const [compactViewport, setCompactViewport] = useState(false);
+  const [narrowViewport, setNarrowViewport] = useState(false);
 
   useEffect(() => {
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     const viewportQuery = window.matchMedia('(max-width: 767px)');
+    const narrowViewportQuery = window.matchMedia('(max-width: 430px)');
     const updateMotionPreference = () => setReduceMotion(motionQuery.matches);
     const updateViewportPreference = () => setCompactViewport(viewportQuery.matches);
+    const updateNarrowViewportPreference = () => setNarrowViewport(narrowViewportQuery.matches);
     updateMotionPreference();
     updateViewportPreference();
+    updateNarrowViewportPreference();
     motionQuery.addEventListener('change', updateMotionPreference);
     viewportQuery.addEventListener('change', updateViewportPreference);
+    narrowViewportQuery.addEventListener('change', updateNarrowViewportPreference);
 
     const observer = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
@@ -29,6 +34,7 @@ function AsciiFlowerVideo({ className = '' }) {
     return () => {
       motionQuery.removeEventListener('change', updateMotionPreference);
       viewportQuery.removeEventListener('change', updateViewportPreference);
+      narrowViewportQuery.removeEventListener('change', updateNarrowViewportPreference);
       observer.disconnect();
     };
   }, []);
@@ -42,7 +48,7 @@ function AsciiFlowerVideo({ className = '' }) {
           src={FLOWER_VIDEO_SRC}
           className={`${className}__canvas`}
           videoMode={false}
-          numColsRaw={compactViewport ? 120 : 220}
+          numColsRaw={narrowViewport ? 76 : compactViewport ? 120 : 220}
           brightnessRaw={1.06}
           saturationRaw={1.9}
           bgOpacityRaw={0.08}

@@ -5,7 +5,7 @@ const aboutCommand = ['cat about.md'];
 
 const facts = [
   ['school', 'simon fraser university'],
-  ['degree', 'b.sc. computer science · expected apr 2027'],
+  ['degree', 'b.sc. computer science'],
   ['focus', 'machine learning, data, full-stack'],
 ];
 
