@@ -55,6 +55,4 @@ npm run lint
 
 Vercel uses the standard Vite output produced by `npm run build:vercel`. The root-level `vercel.json` selects this command and serves the resulting `dist` directory.
 
-The portfolio is also configured for OpenAI Sites through `.openai/hosting.json`. The default `npm run build` command prepares that deployment format. The hosting file is intentionally committed because its project ID associates the repository with the hosted site; the ID is not an authentication credential.
-
 Do not commit API keys, access tokens, or secret-filled `.env` files.
