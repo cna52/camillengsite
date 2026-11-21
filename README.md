@@ -1,16 +1,16 @@
 # camille ng — personal portfolio
 
-A minimalist, terminal-inspired portfolio for Camille Ng, a computer science student at Simon Fraser University. The site highlights my experience, interests, hackathon and case-competition wins, and contact information.
+A minimal, single-column portfolio for Camille Ng, a computer science student at Simon Fraser University. It covers my experience, hackathon wins, and events I have organized or mentored at, with contact links at the bottom.
 
 ## Features
 
-- Animated ASCII flower hero
-- Terminal-style typing and printing animations
-- About and experience sections
-- Expandable entries for winning hackathon and case-competition projects
-- Contact terminal with email, GitHub, and LinkedIn links
-- Responsive layout and reduced-motion support
-- Custom `>` favicon
+- Hero and about combined in one section, with an ASCII scramble effect when you hover the name
+- Vertical-rail experience timeline with a one-line summary for each role
+- Events and projects list, newest first, with award badges and expandable details, photos, and links
+- Always-playing ASCII flower banner in the contact section
+- Light and dark themes that follow the system setting until you pick one with the toggle
+- Mobile-friendly layout and reduced-motion support
+- Dog favicon
 
 ## Built with
 
@@ -18,6 +18,12 @@ A minimalist, terminal-inspired portfolio for Camille Ng, a computer science stu
 - Vite 6
 - JavaScript and CSS
 - `react-video-ascii`
+
+## Project structure
+
+- `src/components/` holds one component per section (`HomeSection`, `ExperienceSection`, `ProjectsSection`, `ContactSection`) plus the navbar, theme toggle, name scramble, and flower banner
+- Experience and project entries are plain arrays at the top of `ExperienceSection.jsx` and `ProjectsSection.jsx`
+- `public/photos/` holds the event and project photos, referenced from the `images` field of a project
 
 ## Run locally
 
@@ -48,7 +54,5 @@ npm run lint
 ## Deployment
 
 Vercel uses the standard Vite output produced by `npm run build:vercel`. The root-level `vercel.json` selects this command and serves the resulting `dist` directory.
-
-The portfolio is also configured for OpenAI Sites through `.openai/hosting.json`. The default `npm run build` command prepares that deployment format. The hosting file is intentionally committed because its project ID associates the repository with the hosted site; the ID is not an authentication credential.
 
 Do not commit API keys, access tokens, or secret-filled `.env` files.
