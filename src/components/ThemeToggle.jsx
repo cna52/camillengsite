@@ -51,6 +51,21 @@ function ThemeToggle() {
     applyTheme(theme);
   }, [theme]);
 
+  // follow the system theme until the visitor picks one with the toggle
+  useEffect(() => {
+    const query = window.matchMedia('(prefers-color-scheme: light)');
+    const onChange = (event) => {
+      try {
+        if (localStorage.getItem(storageKey)) return;
+      } catch {
+        // storage unavailable; treat as no saved choice
+      }
+      setTheme(event.matches ? 'light' : 'dark');
+    };
+    query.addEventListener('change', onChange);
+    return () => query.removeEventListener('change', onChange);
+  }, []);
+
   const next = theme === 'dark' ? 'light' : 'dark';
 
   const toggle = () => {

@@ -18,7 +18,8 @@
           savedTheme = null;
         }
 
-        const theme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : 'dark';
+        const systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        const theme = savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : systemTheme;
 
         document.documentElement.dataset.theme = theme;
         document.documentElement.style.colorScheme = theme;
